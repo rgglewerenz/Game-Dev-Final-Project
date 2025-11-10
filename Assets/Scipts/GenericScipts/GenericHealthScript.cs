@@ -13,15 +13,27 @@ public abstract class GenericHealthScript : MonoBehaviour
         get { return currentHealth; }
     }
 
+    protected bool isInvincible = false;
+
     private float currentHealth;
+
+
 
     void Start()
     {
         currentHealth = maxHealth;
+        OnStart();
+    }
+
+    void Update()
+    {
+        OnUpdate();
     }
 
     public void TakeDamage(float damageAmount)
     {
+        if(isInvincible)
+            return;
         currentHealth -= damageAmount;
         OnDamageTaken(damageAmount);
         if (currentHealth <= 0f)
@@ -49,6 +61,16 @@ public abstract class GenericHealthScript : MonoBehaviour
     }
 
     protected virtual void OnHeal(float healAmount)
+    {
+        return;
+    }
+
+    protected virtual void OnStart()
+    {
+        return;
+    }
+
+    protected virtual void OnUpdate()
     {
         return;
     }
