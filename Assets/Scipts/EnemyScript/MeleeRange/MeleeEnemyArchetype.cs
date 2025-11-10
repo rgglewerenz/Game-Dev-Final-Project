@@ -46,12 +46,16 @@ public class MeleeEnemyArchetype : GenericEnemyLogic
 
     protected override Vector3 GetTargetPos()
     {
-        return player.transform.position;
+        if (ObjectVisable(player))
+            return player.transform.position;
+        else
+            return transform.position;
     }
 
     protected override bool WithinRange()
     {
-        if(Vector3.Distance(transform.position, player.transform.position) <= attackRange)
+        if (Vector3.Distance(transform.position, player.transform.position) <= attackRange //Player within shooting Range
+            && ObjectVisable(player)) //Line of sight check
         {
             return true;
         }

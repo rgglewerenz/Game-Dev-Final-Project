@@ -51,4 +51,9 @@ public class ProjectileScript : MonoBehaviour
 
     }
 
+
+    public void SetDamage(float dmg)
+    {
+        damage = dmg;
+    }
 }

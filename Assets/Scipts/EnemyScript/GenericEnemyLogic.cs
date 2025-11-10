@@ -18,6 +18,8 @@ public abstract class GenericEnemyLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        OnUpdate();
         if (WithinRange())
         {
             AttackTarget();
@@ -27,7 +29,6 @@ public abstract class GenericEnemyLogic : MonoBehaviour
             agent.speed = GetSpeed();
             agent.SetDestination(GetTargetPos());
         }
-        OnUpdate();
     }
 
     protected virtual void OnStart()
@@ -40,7 +41,6 @@ public abstract class GenericEnemyLogic : MonoBehaviour
         return;
     }
 
-
     protected abstract Vector3 GetTargetPos();
 
     protected abstract bool WithinRange();
@@ -49,4 +49,13 @@ public abstract class GenericEnemyLogic : MonoBehaviour
 
     protected abstract float GetSpeed();
 
+
+    protected bool ObjectVisable(GameObject otherObject)
+    {
+        bool hitSomething = Physics.Raycast(transform.position, (otherObject.transform.position - transform.position).normalized, out RaycastHit hitInfo);
+
+        if (hitSomething && hitInfo.collider.gameObject == otherObject)
+            return true;
+        return false;
+    }
 }
