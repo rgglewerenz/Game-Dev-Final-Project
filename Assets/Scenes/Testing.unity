@@ -299,7 +299,7 @@ MonoBehaviour:
   groundDistance: 0.4
   groundMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   isGrounded: 0
 --- !u!114 &263508543
 MonoBehaviour:
@@ -775,7 +775,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 773864e3b54954443a6cc4bdf3ac1a02, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 6a5f985e1a8251c4fa25418266b84f51, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &909758691
 GameObject:
