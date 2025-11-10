@@ -10,6 +10,7 @@ public class GunScript : MonoBehaviour
     public float queue_input_length = 0.5f;
     public int ammo_per_shot = 1;
     public int ammo_capacity = 30;
+    public int damage = 10;
     public Transform bullet_spawn;
 
     float shot_queue_time = 0f;
@@ -19,6 +20,8 @@ public class GunScript : MonoBehaviour
 
     void Start()
     {
+        if (bullet != null)
+            bullet.GetComponent<ProjectileScript>().SetDamage(damage); // Set damage on bullet prefab if assigned (Gun damage pef over bullet damage)
         ammo_count = ammo_capacity;
     }
 
@@ -45,11 +48,38 @@ public class GunScript : MonoBehaviour
     {
         if (ammo_count < ammo_per_shot)
             return;
+
+        SpawnBullets();
+
+        lastShot = fire_rate;
+        ammo_count -= ammo_per_shot;
+    }
+
+    private void SpawnBullets() {
+        if (bullet == null)
+        {
+            if (Physics.Raycast(bullet_spawn.position, bullet_spawn.forward, out RaycastHit hit))
+            {
+                Debug.Log(hit.collider.name);
+                if (hit.collider == null)
+                {
+                    return;
+                }
+
+                var health = hit.collider.GetComponent<GenericHealthScript>();
+                if (health != null)
+                {
+                    Debug.Log("Damage");
+                    health.TakeDamage(damage);
+                }
+            }
+            return;
+        }
+
         for (int i = 0; i < shots_per_fire; i++)
         {
             Instantiate(bullet, bullet_spawn.position, bullet_spawn.rotation);
         }
-        lastShot = fire_rate;
-        ammo_count -= ammo_per_shot;
     }
+
 }
