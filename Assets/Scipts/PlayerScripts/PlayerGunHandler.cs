@@ -18,6 +18,7 @@ public class PlayerGunHandler : MonoBehaviour
         guns[selected_gun].GetComponent<GunScript>().QueueFire();
     }
 
+
     private int wrapper(int starting, int direction, int count)
     {
 

@@ -8,11 +8,19 @@ public class GunScript : MonoBehaviour
     public float fire_rate = 1f;
     public int shots_per_fire = 1;
     public float queue_input_length = 0.5f;
+    public int ammo_per_shot = 1;
+    public int ammo_capacity = 30;
     public Transform bullet_spawn;
 
     float shot_queue_time = 0f;
     float lastShot = 0f;
+    float ammo_count = 30f;
     bool shoot = false;
+
+    void Start()
+    {
+        ammo_count = ammo_capacity;
+    }
 
     void Update()
     {
@@ -35,10 +43,13 @@ public class GunScript : MonoBehaviour
 
     public void Fire()
     {
+        if (ammo_count < ammo_per_shot)
+            return;
         for (int i = 0; i < shots_per_fire; i++)
         {
             Instantiate(bullet, bullet_spawn.position, bullet_spawn.rotation);
         }
         lastShot = fire_rate;
+        ammo_count -= ammo_per_shot;
     }
 }
