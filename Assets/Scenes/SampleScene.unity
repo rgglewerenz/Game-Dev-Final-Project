@@ -400,8 +400,8 @@ GameObject:
   - component: {fileID: 851187177}
   - component: {fileID: 851187176}
   - component: {fileID: 851187175}
-  - component: {fileID: 851187181}
   - component: {fileID: 851187180}
+  - component: {fileID: 851187181}
   m_Layer: 0
   m_Name: Sample Enemy
   m_TagString: Enemy
@@ -541,9 +541,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 851187174}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27d8a1adc8ff2ca479be4119fafa5eb9, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f6687cdc5b717946aa8ca9b22ac07ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackRange: 15
+  speed: 3.5
+  attackDamage: 10
+  attackCooldown: 1.5
+  projectilePrefab: {fileID: 7452851324224761869, guid: 24a38ed41f0edf24ea92c3a53d3b9ac9, type: 3}
 --- !u!1 &906531151
 GameObject:
   m_ObjectHideFlags: 0
