@@ -19,8 +19,6 @@ public class GameSaveManager : MonoBehaviour
         Instantiate(PlayerPrefab, PlayerSpawn.position, PlayerSpawn.rotation);
 
 
-        
-
     }
 
 
