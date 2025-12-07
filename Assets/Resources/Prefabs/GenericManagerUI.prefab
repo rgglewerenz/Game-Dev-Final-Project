@@ -114,6 +114,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19f2852ab6d3c614a97f4ca60dc321d2, type: 3}
+--- !u!114 &1993807799031236781 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5700270582229515403, guid: 19f2852ab6d3c614a97f4ca60dc321d2, type: 3}
+  m_PrefabInstance: {fileID: 6102377793634382886}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15309dff163a9a64490c3173b7181d58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4315687342603673593 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8022149537458400223, guid: 19f2852ab6d3c614a97f4ca60dc321d2, type: 3}
@@ -150,6 +161,14 @@ PrefabInstance:
     - target: {fileID: 798800883004118394, guid: c399daf310728524ca74499511696038, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676498296684958652, guid: c399daf310728524ca74499511696038, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1993807799031236781}
+    - target: {fileID: 1676498296684958652, guid: c399daf310728524ca74499511696038, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ReturnToMainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 2852671572046731082, guid: c399daf310728524ca74499511696038, type: 3}
       propertyPath: m_Pivot.x
@@ -230,6 +249,10 @@ PrefabInstance:
     - target: {fileID: 2852671572046731082, guid: c399daf310728524ca74499511696038, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5111438353409977375, guid: c399daf310728524ca74499511696038, type: 3}
+      propertyPath: m_text
+      value: Main Menu
       objectReference: {fileID: 0}
     - target: {fileID: 5363542917701479075, guid: c399daf310728524ca74499511696038, type: 3}
       propertyPath: m_Name
