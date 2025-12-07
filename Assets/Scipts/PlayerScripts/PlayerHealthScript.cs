@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerHealthScript : GenericHealthScript
@@ -8,11 +9,9 @@ public class PlayerHealthScript : GenericHealthScript
 
     private float lastDamageTime = 0f;
 
-
     protected override void Die()
     {
-        Debug.Log("Player Died!");
-        // Implement player death logic here (e.g., respawn, game over screen)
+        GameManager.Instance.GameOver();
     }
 
     protected override void OnStart()
@@ -38,6 +37,7 @@ public class PlayerHealthScript : GenericHealthScript
         Debug.Log("Player took " + damageAmount + " damage!");
         Debug.Log("Current Health: " + CurrentHealth);
         lastDamageTime = invincibilityDuration;
+        GameManager.Instance.SetPlayerHealthText($"{CurrentHealth} Hp");
     }
 
 }

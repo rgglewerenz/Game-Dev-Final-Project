@@ -15,7 +15,7 @@ public class GunScript : MonoBehaviour
 
     float shot_queue_time = 0f;
     float lastShot = 0f;
-    float ammo_count = 30f;
+    int ammo_count = 30;
     bool shoot = false;
 
     void Start()
@@ -82,4 +82,20 @@ public class GunScript : MonoBehaviour
         }
     }
 
+    public int GetAmmoCount()
+    {
+        return (int)ammo_count;
+    }
+
+    public int GetAmmoCapacity()
+    {
+        return (int)ammo_capacity;
+    }
+
+    public void AddAmmo(int count)
+    {
+        ammo_count += count;
+        if (ammo_count > ammo_capacity)
+            ammo_count = ammo_capacity;
+    }
 }
