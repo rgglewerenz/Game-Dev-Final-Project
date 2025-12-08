@@ -25,6 +25,11 @@ public class MeleeEnemyArchetype : GenericEnemyLogic
 
     protected override void OnUpdate()
     {
+        if(player == null)
+        {
+            player = GameObject.FindWithTag("Player");
+            return;
+        }
         if (lastAttackTime > 0)
             lastAttackTime -= Time.deltaTime;
     }
