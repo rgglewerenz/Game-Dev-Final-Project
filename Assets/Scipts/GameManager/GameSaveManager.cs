@@ -14,6 +14,10 @@ public class GameSaveManager : MonoBehaviour
 
     public GameObject PlayerPrefab;
 
+    SceneHandler SceneHandler;
+
+    GameManager GameManager;
+
     public bool LoadOnStart = false;
 
     private const string saveFileExtension = ".dat";
@@ -73,10 +77,13 @@ public class GameSaveManager : MonoBehaviour
 
     void Start()
     {
+        SceneHandler = FindObjectOfType<SceneHandler>();
+        GameManager = FindObjectOfType<GameManager>();
         if (LoadOnStart)
         {
             LoadGame();
         }
+        GameManager.Resume();
     }
 
     private void SaveGameData(string saveName)
@@ -101,7 +108,7 @@ public class GameSaveManager : MonoBehaviour
         var gunHandler = player.GetComponent<PlayerGunHandler>();
 
 
-        sb.AppendLine(SceneManager.GetActiveScene().name);
+        sb.AppendLine($"Level{SceneHandler.GetCurrentLevel() + 1}");
         sb.AppendLine(health.CurrentHealth.ToString());
         sb.AppendLine(gunHandler.SirialzeGunsToString());
 
