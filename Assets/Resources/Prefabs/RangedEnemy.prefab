@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 716ee48e2166bb046b59c3e09b51780c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -230,6 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  deathEffectPrefab: {fileID: 8588737359264156375, guid: 26470a18b32d0ee45b731b8214e8222f, type: 3}
 --- !u!195 &8227336481600068323
 NavMeshAgent:
   m_ObjectHideFlags: 0

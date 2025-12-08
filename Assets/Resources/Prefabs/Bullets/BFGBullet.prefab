@@ -43,8 +43,8 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0, g: 0.64651275, b: 1, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 0.05281806, g: 1, b: 0, a: 1}
+  m_Intensity: 10
   m_Range: 5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 7859977992866395509}
   - component: {fileID: 1987074284246279145}
   m_Layer: 0
-  m_Name: bullet1
+  m_Name: BFGBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,7 +125,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.003, y: 1.275, z: 0.994}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8866552881771803311}
@@ -159,7 +159,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 91614e3ec40efca4d88dd1a13d255365, type: 2}
+  - {fileID: 2100000, guid: 2cad3cb2845e4ce4ba3fa057d9e18585, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -217,7 +217,7 @@ MonoBehaviour:
   projectileSpeed: 40
   lifeTime: 5
   damage: 25
-  CanPierce: 0
+  CanPierce: 1
   targetTag: Enemy
 --- !u!54 &1987074284246279145
 Rigidbody:
