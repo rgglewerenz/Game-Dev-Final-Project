@@ -82,8 +82,8 @@ public class GameSaveManager : MonoBehaviour
         if (LoadOnStart)
         {
             LoadGame();
+            GameManager.Resume();
         }
-        GameManager.Resume();
     }
 
     private void SaveGameData(string saveName)
