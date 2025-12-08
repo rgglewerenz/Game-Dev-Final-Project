@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using TMPro;
 using UnityEngine;
 
@@ -66,9 +68,18 @@ public class PlayerGunHandler : MonoBehaviour
 
     public void AddGun(GameObject gun)
     {
+        if (HasGun(gun.name))
+        {
+            return;
+        }
         var gun_object = Instantiate(gun, GunHolder);
         gun_object.SetActive(false);
         guns.Add(gun_object);
+    }
+
+    public bool HasGun(string gun_name)
+    {
+        return guns.Any(x => x.name.Contains(gun_name));
     }
 
     public void AddAmmoToGun(int amount)
@@ -76,13 +87,49 @@ public class PlayerGunHandler : MonoBehaviour
         guns[selected_gun].GetComponent<GunScript>().AddAmmo(amount);
     }
 
-    public void LoadGunsFromString()
+    public void LoadGunsFromStrings(IEnumerable<string> lines)
     {
-
+        foreach (string line in lines)
+        {
+            var split = line.Split(':');
+            var gun_name = split[0];
+            var ammo_count = int.Parse(split[1]);
+            var gun_prefab = GetGunPrefabByName(gun_name);
+            if (gun_prefab != null)
+            {
+                AddGun(gun_prefab);
+                guns[guns.Count - 1].GetComponent<GunScript>().SetAmmoCount(ammo_count);
+            }
+        }
     }
 
     public bool IsCurrentGunAmmoFull()
     {
         return guns[selected_gun].GetComponent<GunScript>().IsAmmoFull();
     }
+
+    public string SirialzeGunsToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        foreach (GameObject gun in guns)
+        {
+            sb.AppendLine(gun.name + ":" + gun.GetComponent<GunScript>().GetAmmoCount().ToString());
+
+        }
+        return sb.ToString();
+    }
+
+    private GameObject GetGunPrefabByName(string gun_name)
+    {
+        var gun_prefabs = Resources.LoadAll<GameObject>("Guns/");
+        foreach (var prefab in gun_prefabs)
+        {
+            if (prefab.name == gun_name)
+            {
+                return prefab;
+            }
+        }
+        return null;
+    }
+
 }

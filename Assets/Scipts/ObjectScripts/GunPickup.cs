@@ -8,6 +8,10 @@ public class GunPickup : GenericPickupScipt<PlayerGunHandler>
 
     protected override bool OnPickup(PlayerGunHandler picker)
     {
+        if (picker.HasGun(gunPrefab.name))
+        {
+            return false;
+        }
         picker.AddGun(gunPrefab);
         return true;
     }

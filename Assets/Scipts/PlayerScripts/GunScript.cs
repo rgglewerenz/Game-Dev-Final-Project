@@ -84,12 +84,12 @@ public class GunScript : MonoBehaviour
 
     public int GetAmmoCount()
     {
-        return (int)ammo_count;
+        return ammo_count;
     }
 
     public int GetAmmoCapacity()
     {
-        return (int)ammo_capacity;
+        return ammo_capacity;
     }
 
     public void AddAmmo(int count)
@@ -103,4 +103,11 @@ public class GunScript : MonoBehaviour
     {
         return ammo_count >= ammo_capacity;
     }
+
+    public void SetAmmoCount(int ammo)
+    {
+        ammo_count = ammo;
+    }
+
+
 }

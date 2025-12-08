@@ -76,4 +76,12 @@ public abstract class GenericHealthScript : MonoBehaviour
         return;
     }
 
+    protected void SetCurrentHealth(float healthAmount)
+    {
+        currentHealth = healthAmount;
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+    }
 }
