@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemyHealthController : GenericHealthScript
 {
+    
+    
+
     protected override void Die()
     {
         Destroy(this.gameObject);

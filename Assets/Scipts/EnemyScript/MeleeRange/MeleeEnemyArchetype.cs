@@ -5,8 +5,6 @@ using UnityEngine;
 public class MeleeEnemyArchetype : GenericEnemyLogic
 {
     [SerializeField]
-    private float attackRange = 2.0f;
-    [SerializeField]
     private float speed = 3.5f;
     [SerializeField]
     private float attackDamage = 10.0f;
@@ -49,26 +47,23 @@ public class MeleeEnemyArchetype : GenericEnemyLogic
         }
     }
 
-    protected override Vector3 GetTargetPos()
-    {
-        if (ObjectVisable(player))
-            return player.transform.position;
-        else
-            return transform.position;
-    }
-
-    protected override bool WithinRange()
-    {
-        if (Vector3.Distance(transform.position, player.transform.position) <= attackRange //Player within shooting Range
-            && ObjectVisable(player)) //Line of sight check
-        {
-            return true;
-        }
-        return false;
-    }
-
     protected override float GetSpeed()
     {
         return speed;
+    }
+
+    protected override GameObject GetTarget()
+    {
+        return player;
+    }
+
+    protected override float GetAttackRange()
+    {
+        return attackRange;
+    }
+
+    protected override float GetDetectionRange()
+    {
+        return detectionRange;
     }
 }

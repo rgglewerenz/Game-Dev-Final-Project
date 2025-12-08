@@ -5,8 +5,6 @@ using UnityEngine;
 public class RangeEnemyArchetype : GenericEnemyLogic
 {
     [SerializeField]
-    private float attackRange = 15f;
-    [SerializeField]
     private float speed = 3.5f;
     [SerializeField]
     private float attackDamage = 10.0f;
@@ -51,26 +49,18 @@ public class RangeEnemyArchetype : GenericEnemyLogic
             lastAttackTime -= Time.deltaTime;
     }
 
-
-
-    protected override Vector3 GetTargetPos()
+    protected override GameObject GetTarget()
     {
-        if(ObjectVisable(player))
-            return player.transform.position;
-        else
-            return transform.position;
+        return player;
     }
 
-    protected override bool WithinRange()
+    protected override float GetAttackRange()
     {
-        if (Vector3.Distance(transform.position, player.transform.position) <= attackRange //Player within shooting Range
-            && ObjectVisable(player)) //Line of sight check
-        {
-            return true;
-        }
-        return false;
+        return attackRange;
     }
 
-
-
+    protected override float GetDetectionRange()
+    {
+        return detectionRange;
+    }
 }

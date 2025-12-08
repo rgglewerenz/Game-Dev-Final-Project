@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,6 +39,7 @@ public class ProjectileScript : MonoBehaviour
             if (enemyHealth != null)
             {
                 enemyHealth.TakeDamage(damage);
+                Debug.LogFormat("Projectile hit {0} for {1} damage.", other.gameObject.name, damage);
             }
             if (!CanPierce)
             {

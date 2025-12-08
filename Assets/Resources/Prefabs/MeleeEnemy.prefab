@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8227336481600068323}
   m_Layer: 0
   m_Name: MeleeEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,6 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38de38556df0d9e4ca352a23ed8f4c4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detectionRange: 20
   attackRange: 2
   speed: 3.5
   attackDamage: 10
