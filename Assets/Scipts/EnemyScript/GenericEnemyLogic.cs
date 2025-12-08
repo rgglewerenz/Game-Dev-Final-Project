@@ -30,6 +30,8 @@ public abstract class GenericEnemyLogic : MonoBehaviour
         if (WithinAttackRange())
         {
             AttackTarget();
+            agent.SetDestination(transform.position);
+            this.transform.LookAt(target.transform.position);
             return;
         }
 

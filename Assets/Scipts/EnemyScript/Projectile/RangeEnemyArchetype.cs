@@ -45,6 +45,8 @@ public class RangeEnemyArchetype : GenericEnemyLogic
 
     protected override void OnUpdate()
     {
+        if(player == null)
+            player = GameObject.FindWithTag("Player");
         if (lastAttackTime > 0)
             lastAttackTime -= Time.deltaTime;
     }

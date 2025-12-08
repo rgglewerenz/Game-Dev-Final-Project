@@ -125,7 +125,7 @@ MonoBehaviour:
   queue_input_length: 0.5
   ammo_per_shot: 1
   ammo_capacity: 30
-  damage: 10
+  damage: 50
   bullet_spawn: {fileID: 2416230454270718455}
   PrefabName: gun1
 --- !u!1 &8496198733962775119
