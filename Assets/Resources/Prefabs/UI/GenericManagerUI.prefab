@@ -258,6 +258,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ReturnToMainMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 2108198377500778976, guid: c399daf310728524ca74499511696038, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1993807799031236781}
+    - target: {fileID: 2108198377500778976, guid: c399daf310728524ca74499511696038, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ReturnToMainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 2513181750007903198, guid: c399daf310728524ca74499511696038, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4003212612923120402}
+    - target: {fileID: 2513181750007903198, guid: c399daf310728524ca74499511696038, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: QuitGame
+      objectReference: {fileID: 0}
     - target: {fileID: 2852671572046731082, guid: c399daf310728524ca74499511696038, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -373,6 +389,14 @@ PrefabInstance:
     - target: {fileID: 7275030493845664057, guid: c399daf310728524ca74499511696038, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Resume
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281914671274419996, guid: c399daf310728524ca74499511696038, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4003212612923120402}
+    - target: {fileID: 7281914671274419996, guid: c399daf310728524ca74499511696038, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartGame
       objectReference: {fileID: 0}
     - target: {fileID: 7447836502084119806, guid: c399daf310728524ca74499511696038, type: 3}
       propertyPath: m_AnchorMax.y
