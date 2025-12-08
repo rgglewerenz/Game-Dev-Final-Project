@@ -43,11 +43,21 @@ public class GameSaveManager : MonoBehaviour
         LoadGame();
     }
 
+    public void SaveGame(string saveName)
+    {
+        SaveGameData(saveName);
+    }
+
     public void LoadGame()
     {
-        // For now, just spawn the player at the spawn point
         Instantiate(PlayerPrefab, PlayerSpawn.position, PlayerSpawn.rotation);
 
+        var saveFiles = GetSaveFiles();
+
+        if (saveFiles.Count > 0)
+        {
+            LoadGameData(saveFiles[0]);
+        }
 
     }
 
@@ -96,10 +106,10 @@ public class GameSaveManager : MonoBehaviour
         string sceneName = lines[0];
         int playerHealth = int.Parse(lines[1]);
 
-        var gunData = lines.Skip(2);
+        var gunData = lines.Skip(2).ToList();
 
-        // Load the scene
-        SceneManager.LoadScene(sceneName);
+        gunData = gunData.Where(x => !string.IsNullOrWhiteSpace(x)).ToList();
+
         // After scene is loaded, set player health and guns
         var player = GameObject.FindGameObjectWithTag("Player");
         var health = player.GetComponent<PlayerHealthScript>();

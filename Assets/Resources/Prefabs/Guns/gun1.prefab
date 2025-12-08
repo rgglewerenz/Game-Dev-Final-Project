@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3610518070955567161}
   - component: {fileID: 3489250483372892942}
   m_Layer: 0
-  m_Name: gun2
+  m_Name: gun1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e66217af931b4e4409f7cebbb71f6226, type: 2}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -127,6 +127,7 @@ MonoBehaviour:
   ammo_capacity: 30
   damage: 10
   bullet_spawn: {fileID: 2416230454270718455}
+  PrefabName: gun1
 --- !u!1 &8496198733962775119
 GameObject:
   m_ObjectHideFlags: 0

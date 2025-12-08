@@ -68,7 +68,7 @@ public class PlayerGunHandler : MonoBehaviour
 
     public void AddGun(GameObject gun)
     {
-        if (HasGun(gun.name))
+        if (HasGun(gun.GetComponent<GunScript>().PrefabName))
         {
             return;
         }
@@ -79,7 +79,7 @@ public class PlayerGunHandler : MonoBehaviour
 
     public bool HasGun(string gun_name)
     {
-        return guns.Any(x => x.name.Contains(gun_name));
+        return guns.Any(x => x.GetComponent<GunScript>().PrefabName.Contains(gun_name));
     }
 
     public void AddAmmoToGun(int amount)
@@ -89,6 +89,13 @@ public class PlayerGunHandler : MonoBehaviour
 
     public void LoadGunsFromStrings(IEnumerable<string> lines)
     {
+        foreach(var item in guns)
+        {
+            Destroy(item.gameObject);
+        }
+
+        guns = new List<GameObject>();
+
         foreach (string line in lines)
         {
             var split = line.Split(':');
@@ -101,6 +108,7 @@ public class PlayerGunHandler : MonoBehaviour
                 guns[guns.Count - 1].GetComponent<GunScript>().SetAmmoCount(ammo_count);
             }
         }
+        guns[0].SetActive(true);
     }
 
     public bool IsCurrentGunAmmoFull()
@@ -113,7 +121,7 @@ public class PlayerGunHandler : MonoBehaviour
         StringBuilder sb = new StringBuilder();
         foreach (GameObject gun in guns)
         {
-            sb.AppendLine(gun.name + ":" + gun.GetComponent<GunScript>().GetAmmoCount().ToString());
+            sb.AppendLine(gun.GetComponent<GunScript>().PrefabName + ":" + gun.GetComponent<GunScript>().GetAmmoCount().ToString());
 
         }
         return sb.ToString();
@@ -121,7 +129,7 @@ public class PlayerGunHandler : MonoBehaviour
 
     private GameObject GetGunPrefabByName(string gun_name)
     {
-        var gun_prefabs = Resources.LoadAll<GameObject>("Guns/");
+        var gun_prefabs = Resources.LoadAll<GameObject>("Prefabs/Guns/");
         foreach (var prefab in gun_prefabs)
         {
             if (prefab.name == gun_name)

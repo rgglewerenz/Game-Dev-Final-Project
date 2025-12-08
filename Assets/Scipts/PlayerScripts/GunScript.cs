@@ -12,6 +12,7 @@ public class GunScript : MonoBehaviour
     public int ammo_capacity = 30;
     public int damage = 10;
     public Transform bullet_spawn;
+    public string PrefabName;
 
     float shot_queue_time = 0f;
     float lastShot = 0f;
@@ -22,7 +23,8 @@ public class GunScript : MonoBehaviour
     {
         if (bullet != null)
             bullet.GetComponent<ProjectileScript>().SetDamage(damage); // Set damage on bullet prefab if assigned (Gun damage pef over bullet damage)
-        ammo_count = ammo_capacity;
+        if(ammo_count > ammo_capacity)
+            ammo_count = ammo_capacity;
     }
 
     void Update()
