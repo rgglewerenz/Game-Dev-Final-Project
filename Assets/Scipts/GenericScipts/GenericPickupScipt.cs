@@ -4,15 +4,17 @@ using UnityEngine;
 
 public abstract class GenericPickupScipt<T> : MonoBehaviour
 {
+
     private void OnTriggerEnter(Collider other)
     {
         T component = other.GetComponent<T>();
         if (component != null)
         {
-            OnPickup(component);
-            Destroy(gameObject);
+            if (OnPickup(component)) {
+                Destroy(gameObject);
+            }
         }
     }
 
-    protected abstract void OnPickup(T picker);
+    protected abstract bool OnPickup(T picker);
 }

@@ -40,4 +40,10 @@ public class PlayerHealthScript : GenericHealthScript
         GameManager.Instance.SetPlayerHealthText($"{CurrentHealth} Hp");
     }
 
+    protected override void OnHeal(float healAmount)
+    {
+        Debug.Log("Current Health: " + CurrentHealth);
+        GameManager.Instance.SetPlayerHealthText($"{CurrentHealth} Hp");
+    }
+
 }

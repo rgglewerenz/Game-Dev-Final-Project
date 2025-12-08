@@ -8,8 +8,28 @@ public class GameSaveManager : MonoBehaviour
 
     public GameObject PlayerPrefab;
 
+    private const string saveFileExtension = ".dat";
+
+    private const string saveFileDirectory = "/Saves/";
+
+    private string GetSaveFilePath(string saveFileName)
+    {
+        return UnityEngine.Application.dataPath + saveFileDirectory + saveFileName + saveFileExtension;
+    }
+
+    private List<string> GetSaveFiles()
+    {
+        if (!Directory.Exists(UnityEngine.Application.dataPath + "appdata"))
+        {
+            Directory.CreateDirectory(UnityEngine.Application.dataPath + "appdata");
+        }
+    }
+
+
     private void Start()
     {
+
+
         LoadGame();
     }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,10 +21,10 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
+    public PlayerGunHandler gunHandler;
 
 
     private CharacterController controller;
-    private PlayerGunHandler gunHandler;
     private Vector3 velocity;
     [SerializeField]
     private bool isGrounded;
@@ -41,10 +42,39 @@ public class PlayerMovement : MonoBehaviour
     {
         HandleMouseLook();
         HandleMovement();
+        HandleGunActions();
+    }
+
+    private void HandleGunActions()
+    {
         if (Input.GetMouseButton(0) || Input.GetMouseButtonDown(0))
         {
             gunHandler.FireGun();
         }
+
+        for (int i = 0; i <= 9; i++)
+        {
+            KeyCode numberKey = (KeyCode)((int)KeyCode.Alpha0 + i);
+
+            if (Input.GetKeyDown(numberKey))
+            {
+                gunHandler.SelectGun(i == 0 ? 9 : i - 1);
+            }
+        }
+
+        var selector = Input.GetAxis("Mouse ScrollWheel");
+
+        if(selector > 0f)
+        {
+            gunHandler.ChangeSelectedGun(1);
+        }
+        else if (selector < 0f)
+        {
+            gunHandler.ChangeSelectedGun(-1);
+        }
+
+
+
     }
 
     void HandleMouseLook()
@@ -79,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
         
         if(!isGrounded)
             move *= airControlPercent;
-        else if (Input.GetButton("Sprint"))
+        if (Input.GetButton("Sprint"))
             move *= sprintMultiplier;
 
         controller.Move(move * moveSpeed * Time.deltaTime);

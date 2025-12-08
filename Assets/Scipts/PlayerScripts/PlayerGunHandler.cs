@@ -8,6 +8,8 @@ public class PlayerGunHandler : MonoBehaviour
     [SerializeField]
     private List<GameObject> guns = new List<GameObject>();
     private int selected_gun = 0;
+    [SerializeField]
+    public Transform GunHolder;
 
     void Update()
     {
@@ -20,6 +22,26 @@ public class PlayerGunHandler : MonoBehaviour
     public void ChangeSelectedGun(int direction)
     {
         selected_gun = wrapper(selected_gun, direction, guns.Count);
+        foreach (GameObject gun in guns)
+        {
+            gun.SetActive(false);
+        }
+        guns[selected_gun].SetActive(true);
+    }
+
+    public void SelectGun(int index)
+    {
+        if (index < 0 || index >= guns.Count)
+        {
+            return;
+        }
+        selected_gun = index;
+        foreach (GameObject gun in guns)
+        {
+            gun.SetActive(false);
+        }
+        guns[selected_gun].SetActive(true);
+
     }
 
     public void FireGun()
@@ -30,32 +52,23 @@ public class PlayerGunHandler : MonoBehaviour
 
     private int wrapper(int starting, int direction, int count)
     {
+        var new_index = starting + direction % count;
 
-        direction = direction % count;
+        if(new_index == count)
+            return 0;
 
-        if (direction == 0)
-        {
-            return starting;
-        }
+        if (new_index < 0)
+            return count + new_index;
 
-        if(starting + direction > count)
-        {
-            return starting + direction - count;
-        }
-
-        if(starting + direction < 0)
-        {
-            return starting - direction + count;
-        }
-
-
-        return starting + direction;
+        return new_index;
     }
 
 
     public void AddGun(GameObject gun)
     {
-        guns.Add(gun);
+        var gun_object = Instantiate(gun, GunHolder);
+        gun_object.SetActive(false);
+        guns.Add(gun_object);
     }
 
     public void AddAmmoToGun(int amount)
@@ -66,5 +79,10 @@ public class PlayerGunHandler : MonoBehaviour
     public void LoadGunsFromString()
     {
 
+    }
+
+    public bool IsCurrentGunAmmoFull()
+    {
+        return guns[selected_gun].GetComponent<GunScript>().IsAmmoFull();
     }
 }

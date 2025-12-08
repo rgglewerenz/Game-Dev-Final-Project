@@ -40,6 +40,7 @@ public abstract class GenericHealthScript : MonoBehaviour
         {
             Die();
         }
+
     }
 
     protected abstract void Die();
@@ -47,11 +48,11 @@ public abstract class GenericHealthScript : MonoBehaviour
     public void Heal(float healAmount)
     {
         currentHealth += healAmount;
-        OnHeal(healAmount);
         if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
         }
+        OnHeal(healAmount);
     }
 
    

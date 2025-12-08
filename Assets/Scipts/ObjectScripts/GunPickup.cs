@@ -6,8 +6,9 @@ public class GunPickup : GenericPickupScipt<PlayerGunHandler>
 {
     public GameObject gunPrefab;
 
-    protected override void OnPickup(PlayerGunHandler picker)
+    protected override bool OnPickup(PlayerGunHandler picker)
     {
-        picker.AddGun(Instantiate(gunPrefab, picker.transform));
+        picker.AddGun(gunPrefab);
+        return true;
     }
 }

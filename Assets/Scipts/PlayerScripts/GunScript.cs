@@ -98,4 +98,9 @@ public class GunScript : MonoBehaviour
         if (ammo_count > ammo_capacity)
             ammo_count = ammo_capacity;
     }
+
+    public bool IsAmmoFull()
+    {
+        return ammo_count >= ammo_capacity;
+    }
 }
