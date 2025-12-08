@@ -8,9 +8,13 @@ using UnityEngine.SceneManagement;
 
 public class GameSaveManager : MonoBehaviour
 {
+    public static string CurrentSaveName = "DefaultSave";
+
     public Transform PlayerSpawn;
 
     public GameObject PlayerPrefab;
+
+    public bool LoadOnStart = false;
 
     private const string saveFileExtension = ".dat";
 
@@ -21,7 +25,7 @@ public class GameSaveManager : MonoBehaviour
         return UnityEngine.Application.dataPath + saveFileDirectory + saveFileName + saveFileExtension;
     }
 
-    private List<string> GetSaveFiles()
+    public List<string> GetSaveFiles()
     {
         if (!Directory.Exists(UnityEngine.Application.dataPath + saveFileDirectory))
         {
@@ -37,10 +41,22 @@ public class GameSaveManager : MonoBehaviour
         return saveFiles;
     }
 
-
-    private void Start()
+    public bool SaveFileExists(string saveName)
     {
-        LoadGame();
+        string filePath = GetSaveFilePath(saveName);
+        return File.Exists(filePath);
+    }
+
+    public string GetSaveLastLevel(string saveName)
+    {
+        string filePath = GetSaveFilePath(saveName);
+        if (!File.Exists(filePath))
+        {
+            Debug.LogError("Save file does not exist: " + filePath);
+            return null;
+        }
+        string[] lines = File.ReadAllLines(filePath);
+        return lines[0];
     }
 
     public void SaveGame(string saveName)
@@ -52,13 +68,15 @@ public class GameSaveManager : MonoBehaviour
     {
         Instantiate(PlayerPrefab, PlayerSpawn.position, PlayerSpawn.rotation);
 
-        var saveFiles = GetSaveFiles();
+        LoadGameData(CurrentSaveName);
+    }
 
-        if (saveFiles.Count > 0)
+    void Start()
+    {
+        if (LoadOnStart)
         {
-            LoadGameData(saveFiles[0]);
+            LoadGame();
         }
-
     }
 
     private void SaveGameData(string saveName)
@@ -96,6 +114,7 @@ public class GameSaveManager : MonoBehaviour
 
     private void LoadGameData(string saveName)
     {
+        CurrentSaveName = saveName;
         string filePath = GetSaveFilePath(saveName);
         if (!File.Exists(filePath))
         {
@@ -110,12 +129,24 @@ public class GameSaveManager : MonoBehaviour
 
         gunData = gunData.Where(x => !string.IsNullOrWhiteSpace(x)).ToList();
 
-        // After scene is loaded, set player health and guns
         var player = GameObject.FindGameObjectWithTag("Player");
         var health = player.GetComponent<PlayerHealthScript>();
         var gunHandler = player.GetComponent<PlayerGunHandler>();
         health.SetHealth(playerHealth);
-        gunHandler.LoadGunsFromStrings(gunData);
+        if(gunData.Count != 0)
+            gunHandler.LoadGunsFromStrings(gunData);
+    }
+
+    public void CreateNewSave(string saveName)
+    {
+        string filePath = GetSaveFilePath(saveName);
+        if (File.Exists(filePath))
+        {
+            File.Delete(filePath);
+        }
+        File.Create(filePath).Close();
+        File.WriteAllText(filePath, "Level1\n100");
+        CurrentSaveName = saveName;
     }
 
 }
