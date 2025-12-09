@@ -124,8 +124,8 @@ MonoBehaviour:
   shots_per_fire: 1
   queue_input_length: 0.5
   ammo_per_shot: 1
-  ammo_capacity: 120
-  damage: 50
+  ammo_capacity: 60
+  damage: 20
   ammo_from_pickup: 30
   PrefabName: gun2
   gunSound: {fileID: 8300000, guid: adc0a37a4bacb724d91efcb49732a40d, type: 3}

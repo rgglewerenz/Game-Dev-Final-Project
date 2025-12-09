@@ -120,12 +120,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 7452851324224761869, guid: befe90e156b0da1469fd91c48c1beec2, type: 3}
-  fire_rate: 1
+  fire_rate: 0.5
   shots_per_fire: 1
   queue_input_length: 0.5
   ammo_per_shot: 1
-  ammo_capacity: 10
-  damage: 50
+  ammo_capacity: 20
+  damage: 100
   ammo_from_pickup: 5
   PrefabName: gun1
   gunSound: {fileID: 8300000, guid: 0ad2f7b066daff34aa75a61730e018fb, type: 3}
