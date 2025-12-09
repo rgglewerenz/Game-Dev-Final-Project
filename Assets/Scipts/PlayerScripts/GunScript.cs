@@ -29,11 +29,10 @@ public class GunScript : MonoBehaviour
 
     void Update()
     {
-        if(lastShot > 0)
-            lastShot -= Time.deltaTime;
+        OnUpdate();
 
 
-        if(shot_queue_time + queue_input_length > Time.time && lastShot <= 0 && shoot && shot_queue_time != 0)
+        if (shot_queue_time + queue_input_length > Time.time && lastShot <= 0 && shoot && shot_queue_time != 0)
         {
             Fire();
             shoot = false;
@@ -111,5 +110,10 @@ public class GunScript : MonoBehaviour
         ammo_count = ammo;
     }
 
+    public void OnUpdate()
+    {
+        if (lastShot > 0)
+            lastShot -= Time.deltaTime;
+    }
 
 }

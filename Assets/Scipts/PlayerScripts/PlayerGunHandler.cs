@@ -19,6 +19,13 @@ public class PlayerGunHandler : MonoBehaviour
             return;
         GunScript gun_script = guns[selected_gun].GetComponent<GunScript>();
         GameManager.Instance.SetPlayerAmmoText(gun_script.GetAmmoCount().ToString() + " / " + gun_script.GetAmmoCapacity().ToString());
+        for (int i = 0; i < guns.Count; i++)
+        {
+            if(i != selected_gun)
+            {
+                guns[i].GetComponent<GunScript>().OnUpdate();
+            }
+        }
     }
 
     public void ChangeSelectedGun(int direction)
