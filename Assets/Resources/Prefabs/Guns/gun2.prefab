@@ -120,14 +120,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 7452851324224761869, guid: befe90e156b0da1469fd91c48c1beec2, type: 3}
-  fire_rate: 1
+  fire_rate: 0.03225806
   shots_per_fire: 1
   queue_input_length: 0.5
   ammo_per_shot: 1
-  ammo_capacity: 30
+  ammo_capacity: 120
   damage: 50
-  bullet_spawn: {fileID: 2416230454270718455}
+  ammo_from_pickup: 30
   PrefabName: gun2
+  gunSound: {fileID: 8300000, guid: adc0a37a4bacb724d91efcb49732a40d, type: 3}
 --- !u!1 &8496198733962775119
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,9 @@ public class GunPickup : GenericPickupScipt<PlayerGunHandler>
 {
     public GameObject gunPrefab;
 
+    public AudioClip pickupSound;
+
+
     void Start()
     {
         if (gunPrefab == null)
@@ -23,6 +26,10 @@ public class GunPickup : GenericPickupScipt<PlayerGunHandler>
             return false;
         }
         picker.AddGun(gunPrefab);
+        if (pickupSound != null)
+        {
+            AudioSource.PlayClipAtPoint(pickupSound, transform.position);
+        }
         return true;
     }
 }

@@ -125,9 +125,10 @@ MonoBehaviour:
   queue_input_length: 0.5
   ammo_per_shot: 1
   ammo_capacity: 2
-  damage: 200
-  bullet_spawn: {fileID: 2416230454270718455}
+  damage: 400
+  ammo_from_pickup: 1
   PrefabName: gun2
+  gunSound: {fileID: 8300000, guid: a56f5f95d01abc9428b13bc7de3b0739, type: 3}
 --- !u!1 &8496198733962775119
 GameObject:
   m_ObjectHideFlags: 0

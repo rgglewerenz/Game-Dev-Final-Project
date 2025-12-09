@@ -13,6 +13,15 @@ public abstract class GenericEnemyLogic : MonoBehaviour
     [SerializeField]
     protected float attackRange = 2.0f;
 
+    [SerializeField]
+    protected float attackCooldown = 1.5f;
+
+    [SerializeField]
+    protected float attackCoolDownTimer = 0.0f;
+
+    [SerializeField]
+    private AudioClip AttackSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,13 +34,22 @@ public abstract class GenericEnemyLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(attackCooldown > 0)
+            attackCoolDownTimer -= Time.deltaTime;
         var target = GetTarget();
         OnUpdate();
-        if (WithinAttackRange())
+        if (WithinAttackRange() && ObjectVisable())
         {
-            AttackTarget();
             agent.SetDestination(transform.position);
             this.transform.LookAt(target.transform.position);
+            if (attackCoolDownTimer > 0)
+                return;
+            AttackTarget();
+            if (AttackSound != null)
+            {
+                AudioSource.PlayClipAtPoint(AttackSound, transform.position);
+            }
+            attackCoolDownTimer = attackCooldown;
             return;
         }
 

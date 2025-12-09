@@ -267,6 +267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectionRange: 50
   attackRange: 15
+  AttackSound: {fileID: 8300000, guid: c0c4031256796fb4f857185f7cc8b04a, type: 3}
   speed: 3.5
   attackDamage: 10
   attackCooldown: 1.5

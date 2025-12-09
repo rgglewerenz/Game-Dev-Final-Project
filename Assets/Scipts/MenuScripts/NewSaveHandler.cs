@@ -23,7 +23,6 @@ public class NewSaveHandler : MonoBehaviour
         if (!string.IsNullOrEmpty(saveName))
         {
             // Implement save creation logic here
-
             SaveManager.CreateNewSave(saveName);
             sceneHandler.LoadLevel(1); // Load the first level
 

@@ -23,10 +23,12 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundMask;
     public PlayerGunHandler gunHandler;
 
+    [Header("Audio")]
+    public AudioClip jumpSound;
+
 
     private CharacterController controller;
     private Vector3 velocity;
-    [SerializeField]
     private bool isGrounded;
 
     // Start is called before the first frame update
@@ -118,6 +120,10 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            if (jumpSound != null)
+            {
+                AudioSource.PlayClipAtPoint(jumpSound, transform.position);
+            }
         }
 
         // Gravity

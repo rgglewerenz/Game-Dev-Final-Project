@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public GameObject PlayerUI;
     public GameObject PauseUI;
     public GameObject GameOverUI;
+    public GameObject WinUI;
 
     public TMP_Text playerHealthText;
     public TMP_Text playerAmmoCount;
@@ -92,6 +93,17 @@ public class GameManager : MonoBehaviour
     public void SetPlayerAmmoText(string text)
     {
         playerAmmoCount.text = text;
+    }
+
+    public void Win()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        Time.timeScale = 0f;
+        PlayerUI.SetActive(false);
+        GameOverUI.SetActive(false);
+        PauseUI.SetActive(false);
+        WinUI.SetActive(true);
     }
 
 }

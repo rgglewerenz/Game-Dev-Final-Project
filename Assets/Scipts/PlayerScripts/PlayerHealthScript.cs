@@ -9,8 +9,14 @@ public class PlayerHealthScript : GenericHealthScript
 
     private float lastDamageTime = 0f;
 
+    [SerializeField]
+    private AudioClip GameOverSound;
     protected override void Die()
     {
+        if(GameOverSound != null)
+        {
+            AudioSource.PlayClipAtPoint(GameOverSound, transform.position);
+        }
         GameManager.Instance.GameOver();
     }
 

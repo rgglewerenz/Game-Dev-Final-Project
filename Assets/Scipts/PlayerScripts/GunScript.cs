@@ -9,14 +9,16 @@ public class GunScript : MonoBehaviour
     public int shots_per_fire = 1;
     public float queue_input_length = 0.5f;
     public int ammo_per_shot = 1;
-    public int ammo_capacity = 30;
+    public int ammo_capacity = 10000;
     public int damage = 10;
-    public Transform bullet_spawn;
+    public int ammo_from_pickup = 30;
     public string PrefabName;
+
+    public AudioClip gunSound;
 
     float shot_queue_time = 0f;
     float lastShot = 0f;
-    int ammo_count = 30;
+    int ammo_count = 10000;
     bool shoot = false;
 
     void Start()
@@ -50,6 +52,8 @@ public class GunScript : MonoBehaviour
         if (ammo_count < ammo_per_shot)
             return;
 
+        if (gunSound != null)
+            AudioSource.PlayClipAtPoint(gunSound, transform.position);
         SpawnBullets();
 
         lastShot = fire_rate;
@@ -57,9 +61,12 @@ public class GunScript : MonoBehaviour
     }
 
     private void SpawnBullets() {
+        var mainCamera = Camera.main;
+        var bullet_spawn = mainCamera.transform;
         if (bullet == null)
         {
-            if (Physics.Raycast(bullet_spawn.position, bullet_spawn.forward, out RaycastHit hit))
+            
+            if (Physics.Raycast(bullet_spawn.position + (2f * bullet_spawn.forward), bullet_spawn.forward, out RaycastHit hit))
             {
                 Debug.Log(hit.collider.name);
                 if (hit.collider == null)
@@ -79,7 +86,7 @@ public class GunScript : MonoBehaviour
 
         for (int i = 0; i < shots_per_fire; i++)
         {
-            Instantiate(bullet, bullet_spawn.position, bullet_spawn.rotation);
+            Instantiate(bullet, bullet_spawn.position + (2f * bullet_spawn.forward), bullet_spawn.rotation);
         }
     }
 
@@ -93,9 +100,9 @@ public class GunScript : MonoBehaviour
         return ammo_capacity;
     }
 
-    public void AddAmmo(int count)
+    public void AddAmmo()
     {
-        ammo_count += count;
+        ammo_count += ammo_from_pickup;
         if (ammo_count > ammo_capacity)
             ammo_count = ammo_capacity;
     }

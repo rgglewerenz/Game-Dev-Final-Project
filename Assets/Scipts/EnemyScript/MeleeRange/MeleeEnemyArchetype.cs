@@ -8,10 +8,6 @@ public class MeleeEnemyArchetype : GenericEnemyLogic
     private float speed = 3.5f;
     [SerializeField]
     private float attackDamage = 10.0f;
-    [SerializeField]
-    private float attackCooldown = 1.5f;
-
-    private float lastAttackTime = 0.0f;
 
     GameObject player;
 
@@ -28,8 +24,6 @@ public class MeleeEnemyArchetype : GenericEnemyLogic
             player = GameObject.FindWithTag("Player");
             return;
         }
-        if (lastAttackTime > 0)
-            lastAttackTime -= Time.deltaTime;
     }
 
 
@@ -40,11 +34,7 @@ public class MeleeEnemyArchetype : GenericEnemyLogic
         if(playerHealth == null)
             return;
 
-        if (lastAttackTime <= 0)
-        {
-            playerHealth.TakeDamage(attackDamage);
-            lastAttackTime = attackCooldown;
-        }
+        playerHealth.TakeDamage(attackDamage);
     }
 
     protected override float GetSpeed()

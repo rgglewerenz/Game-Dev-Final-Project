@@ -81,6 +81,7 @@ public class PlayerGunHandler : MonoBehaviour
         }
         var gun_object = Instantiate(gun, GunHolder);
         gun_object.SetActive(false);
+        gun.GetComponent<GunScript>().SetAmmoCount(gun.GetComponent<GunScript>().GetAmmoCapacity());
         guns.Add(gun_object);
     }
 
@@ -89,9 +90,9 @@ public class PlayerGunHandler : MonoBehaviour
         return guns.Any(x => x.GetComponent<GunScript>().PrefabName.Contains(gun_name));
     }
 
-    public void AddAmmoToGun(int amount)
+    public void AddAmmoToGun()
     {
-        guns[selected_gun].GetComponent<GunScript>().AddAmmo(amount);
+        guns[selected_gun].GetComponent<GunScript>().AddAmmo();
     }
 
     public void LoadGunsFromStrings(IEnumerable<string> lines)
