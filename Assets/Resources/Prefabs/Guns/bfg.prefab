@@ -127,7 +127,7 @@ MonoBehaviour:
   ammo_capacity: 2
   damage: 400
   ammo_from_pickup: 1
-  PrefabName: gun2
+  PrefabName: bfg
   gunSound: {fileID: 8300000, guid: a56f5f95d01abc9428b13bc7de3b0739, type: 3}
 --- !u!1 &8496198733962775119
 GameObject:

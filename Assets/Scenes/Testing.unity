@@ -412,6 +412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunPrefab: {fileID: 3610518070955567167, guid: a5579e31f90951e4bb19b6c0d252b77a, type: 3}
+  pickupSound: {fileID: 0}
 --- !u!65 &715707797
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -574,6 +575,37 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 6a5f985e1a8251c4fa25418266b84f51, type: 2}
   m_BuildHeightMesh: 0
+--- !u!1 &1391380964
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1391380965}
+  m_Layer: 0
+  m_Name: EnemySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1391380965
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391380964}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 147.95624, y: 15.929805, z: 66.90624}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1477282250
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -877,3 +909,4 @@ SceneRoots:
   - {fileID: 715707798}
   - {fileID: 4267821770124887885}
   - {fileID: 1477282250}
+  - {fileID: 1391380965}
