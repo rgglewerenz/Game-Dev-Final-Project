@@ -11,6 +11,9 @@ public class PlayerHealthScript : GenericHealthScript
 
     [SerializeField]
     private AudioClip GameOverSound;
+
+    [SerializeField]
+    private AudioClip damageSound;
     protected override void Die()
     {
         if(GameOverSound != null)
@@ -39,6 +42,10 @@ public class PlayerHealthScript : GenericHealthScript
 
     protected override void OnDamageTaken(float damageAmount)
     {
+        if (damageSound != null)
+        {
+            AudioSource.PlayClipAtPoint(damageSound, transform.position);
+        }
         isInvincible = true;
         Debug.Log("Player took " + damageAmount + " damage!");
         Debug.Log("Current Health: " + CurrentHealth);

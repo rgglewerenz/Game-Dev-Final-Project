@@ -12,6 +12,7 @@ public class GunScript : MonoBehaviour
     public int ammo_capacity = 10000;
     public int damage = 10;
     public int ammo_from_pickup = 30;
+    public float cone_angle = 5f;
     public string PrefabName;
 
     public AudioClip gunSound;
@@ -23,8 +24,6 @@ public class GunScript : MonoBehaviour
 
     void Start()
     {
-        if (bullet != null)
-            bullet.GetComponent<ProjectileScript>().SetDamage(damage); // Set damage on bullet prefab if assigned (Gun damage pef over bullet damage)
         if(ammo_count > ammo_capacity)
             ammo_count = ammo_capacity;
     }
@@ -33,6 +32,7 @@ public class GunScript : MonoBehaviour
     {
         OnUpdate();
 
+        
 
         if (shot_queue_time + queue_input_length > Time.time && lastShot <= 0 && shoot && shot_queue_time != 0)
         {
@@ -49,6 +49,8 @@ public class GunScript : MonoBehaviour
 
     public void Fire()
     {
+        if (bullet != null)
+            bullet.GetComponent<ProjectileScript>().SetDamage(damage);
         if (ammo_count < ammo_per_shot)
             return;
 
@@ -65,7 +67,6 @@ public class GunScript : MonoBehaviour
         var bullet_spawn = mainCamera.transform;
         if (bullet == null)
         {
-            
             if (Physics.Raycast(bullet_spawn.position + (2f * bullet_spawn.forward), bullet_spawn.forward, out RaycastHit hit))
             {
                 Debug.Log(hit.collider.name);
@@ -84,9 +85,18 @@ public class GunScript : MonoBehaviour
             return;
         }
 
-        for (int i = 0; i < shots_per_fire; i++)
+        if(shots_per_fire <= 1)
         {
             Instantiate(bullet, bullet_spawn.position + (2f * bullet_spawn.forward), bullet_spawn.rotation);
+            return;
+        }
+
+        for (int i = 0; i < shots_per_fire; i++)
+        {
+            float xangle = Random.Range(-cone_angle / 2, cone_angle / 2);
+            float yangle = Random.Range(-cone_angle / 2, cone_angle / 2);
+            Quaternion rotation = Quaternion.AngleAxis(xangle, bullet_spawn.up) * Quaternion.AngleAxis(yangle, bullet_spawn.right) * bullet_spawn.rotation;
+            Instantiate(bullet, bullet_spawn.position + (2f * bullet_spawn.forward), rotation);
         }
     }
 
@@ -121,6 +131,13 @@ public class GunScript : MonoBehaviour
     {
         if (lastShot > 0)
             lastShot -= Time.deltaTime;
+    }
+
+    Vector3 GetWorldPoint()
+    {
+        var mouse = Input.mousePosition;
+        mouse.z = 10f; // distance from camera
+        return Camera.main.ScreenToWorldPoint(mouse);
     }
 
 }

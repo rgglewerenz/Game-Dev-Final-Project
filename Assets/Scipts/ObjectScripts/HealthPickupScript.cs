@@ -5,6 +5,10 @@ using UnityEngine;
 public class HealthPickupScript : GenericPickupScipt<GenericHealthScript>
 {
 
+    [SerializeField]
+    private AudioClip pickupSound;
+
+
     public int HealthAmount = 20;
 
     public bool AnyHealthPickup = false;
@@ -26,6 +30,10 @@ public class HealthPickupScript : GenericPickupScipt<GenericHealthScript>
                 if (playerHealth.CurrentHealth >= playerHealth.maxHealth)
                     return false;
                 playerHealth.Heal(HealthAmount);
+                if (pickupSound != null)
+                {
+                    AudioSource.PlayClipAtPoint(pickupSound, transform.position);
+                }
             }
         }
         return true;

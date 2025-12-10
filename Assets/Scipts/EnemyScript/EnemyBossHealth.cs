@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBossHealth : GenericHealthScript
+public class EnemyBossHealth : EnemyHealthController
 {
-    public GameObject deathEffectPrefab;
-
-
     protected override void Die()
     {
         if (deathEffectPrefab != null)

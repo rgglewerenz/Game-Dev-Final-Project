@@ -67,6 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf4d6a1a5e1c3547b31588f38d22dda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupSound: {fileID: 8300000, guid: b4ac13d2dd5ce95468e2e994bc31933a, type: 3}
   HealthAmount: 20
   AnyHealthPickup: 1
 --- !u!1001 &4797593115900426406

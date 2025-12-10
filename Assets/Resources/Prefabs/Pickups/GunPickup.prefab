@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5665ff2aaaa10c149998ca357ef508fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunPrefab: {fileID: 3610518070955567167, guid: 9bafce7c16adaef418abe824bd4d261c, type: 3}
+  gunPrefab: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: 5b82d42451eeb4346902a1bc4c382a17, type: 3}
 --- !u!65 &5657121847376565213
 BoxCollider:
