@@ -15,13 +15,14 @@ public abstract class GenericHealthScript : MonoBehaviour
 
     protected bool isInvincible = false;
 
-    private float currentHealth;
+    private float currentHealth = -1;
 
 
 
     void Start()
     {
-        currentHealth = maxHealth;
+        if(currentHealth < 0f)
+            currentHealth = maxHealth;
         OnStart();
     }
 

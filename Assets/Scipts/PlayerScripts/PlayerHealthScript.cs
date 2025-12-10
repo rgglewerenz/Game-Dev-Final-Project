@@ -59,6 +59,10 @@ public class PlayerHealthScript : GenericHealthScript
         GameManager.Instance.SetPlayerHealthText($"{CurrentHealth} Hp");
     }
 
-    public void SetHealth(float ammount) => SetCurrentHealth(ammount);
+    public void SetHealth(float ammount) {
+        SetCurrentHealth(ammount);
+        GameManager.Instance.SetPlayerHealthText($"{CurrentHealth} Hp");
+    }
+
 
 }
